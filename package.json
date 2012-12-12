@@ -1,7 +1,7 @@
 {
   "name": "grunt-template-client",
   "description": "compiles any and all templates into ready to use includes",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/alanshaw/grunt-template-client",
   "author": {
     "name": "Markus Ullmark",

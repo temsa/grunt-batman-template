@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
 	var path = require('path'),
 		fs = require('fs'),
-		cleaner = /^\s+|\s+$|[\r?\n]+/gm;
+		cleaner = /^\s+|\s+$|[\r\n]+/gm;
 
 	// Please see the grunt documentation for more information regarding task and
 	// helper creation: https://github.com/gruntjs/grunt/blob/master/docs/toc.md
