@@ -46,7 +46,7 @@ will output the following script file
 ```javascript
 (function bundleTemplates() {
 	 Batman.View.store.set("graph", '<h1 class="title" data-bind="title"></h1><h2 class="value" data-bind="current | prettyNumber | prepend prefix"></h2><p class="more-info" data-bind="moreinfo"></p>' );
-	 Batman.View.store.set("time", '<h1 class="title" data-bind="title"></h1><h3 class="value" data-bind="duration"></h3><p class="more-info">latest<i class="icon-caret-right"></i>previous duration: <span data-bind="difference"></span><i data-bind-class="arrow"></i></p>' );
+	 Batman.View.store.set("clock", '<h1 data-bind="date"></h1><h2 data-bind="time"></h2>' );
 }());
 ```
 ready to use/include/concat etc.
