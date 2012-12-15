@@ -1,7 +1,7 @@
 {
   "name": "grunt-batman-template",
   "description": "compiles any and all templates into ready to use includes",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "homepage": "https://github.com/temsa/grunt-batman-template",
   "author": {
     "name": "Florian Traverse",
