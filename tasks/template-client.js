@@ -1,8 +1,8 @@
 /*
- * grunt-hogan-client
- * https://github.com/markus.ullmark/grunt-hogan-client
+ * grunt-batman-template
+ * forked from https://github.com/markus.ullmark/grunt-hogan-client
  *
- * Copyright (c) 2012 Markus Ullmark
+ * Copyright (c) 2012 Florian Traverse
  * Licensed under the MIT license.
  */
 
@@ -25,11 +25,12 @@ module.exports = function(grunt) {
 	// TASKS
 	// ==========================================================================
 
-	grunt.registerMultiTask('templateclient', 'prepares and combines any type of template into a script include', function() {
+	grunt.registerMultiTask('batman', 'combines batmans templates into a script to include in your page', function() {
 		// grap the filepattern
 		var files = grunt.file.expandFiles(this.file.src);
+//console.log('batman templates:\n', files.join('\n'))
 		// create the hogan include
-		var src = grunt.helper('templateclient', files, this.data.options);
+		var src = grunt.helper('batman', files, this.data.options);
 		// write the new file
 		grunt.file.write(this.file.dest, src);
 		// log our success
@@ -40,36 +41,24 @@ module.exports = function(grunt) {
 	// HELPERS
 	// ==========================================================================
 
-	grunt.registerHelper('templateclient', function(files, options) {
+	grunt.registerHelper('batman', function(files, options) {
 		var js = '';
 
 		options = _.defaults(options || {}, {
-			variable: 'tmpl',
 			key: function(filepath) {
 				return path.basename(filepath, path.extname(filepath));
-			},
-			prefix: 'Hogan.compile(',
-			suffix: ')'
+			}
 		});
-		
-		options.variable = options.variable.replace('window.', '');
 
-		js += '(function compileTemplates() {' + grunt.utils.linefeed;
-		
-		var currentVar = 'window';
-		var variables = options.variable.split('.');
-		
-		_.each(variables, function(v) {
-			currentVar = currentVar + '.' + v;
-			js += '	' + currentVar + '=' + currentVar + '||{};' + grunt.utils.linefeed;
-		});
+		js += '(function bundleBatmanTemplates() {' + grunt.utils.linefeed;
 		
 		files.map(function(filepath) {
-			
+//console.log('filepath:', filepath)
+
 			var key = options.key(filepath);
 			var contents = grunt.file.read(filepath).replace(cleaner, '').replace(/'/g, "\\'");
-			
-			js += '	' + options.variable + "['" + key + "']=" + options.prefix + '\'' + contents + '\'' + options.suffix + ';' + grunt.utils.linefeed;
+//console.log('contents:', contents)
+			js += '  Batman.View.store.set("' + key + '", \'' + contents + '\' );' + grunt.utils.linefeed;
 		});
 
 		js += '}());' + grunt.utils.linefeed;

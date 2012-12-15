@@ -1,6 +1,4 @@
-(function compileTemplates() {
-	window.foo=window.foo||{};
-	window.foo.tmpl=window.foo.tmpl||{};
-	foo.tmpl['bar']=new Ext.XTemplate('<div class="something"><ul>{{#foo}}<li><h1>{{bar}}</h1></li>{{/foo}}</ul></div>');
-	foo.tmpl['foo']=new Ext.XTemplate('<div class="something"><ul>{{#foo}}<li><h1>{{bar}}</h1></li>{{/foo}}</ul></div>');
+(function bundleTemplates() {
+  Batman.View.store.set("bar", '<h1 class="title" data-bind="title"></h1><h2 class="value" data-bind="current | prettyNumber | prepend prefix"></h2><p class="more-info" data-bind="moreinfo"></p>' );
+  Batman.View.store.set("foo", '<img data-bind-src="image | prepend \'/assets\'" data-bind-width="width"/>' );
 }());

@@ -5,18 +5,13 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    templateclient: {
+    batman: {
       namespaced: {
-        options: {
-          variable: 'foo.tmpl',
-          prefix: 'new Ext.XTemplate(',
-          suffix: ')'
-        },
-        src: ['test/templates/**/*.hogan'],
+        src: ['test/templates/**/*.html'],
         dest: 'test/tmp/foo.js'
       },
       global: {
-        src: ['test/templates/**/*.hogan'],
+        src: ['test/templates/**/*.html'],
         dest: 'test/tmp/bar.js'
       }
     },
@@ -64,6 +59,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bump');
 
   // Default task.
-  grunt.registerTask('default', 'lint templateclient test');
+  grunt.registerTask('default', 'lint batman test');
 
 };

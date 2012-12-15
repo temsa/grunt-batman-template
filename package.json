@@ -1,13 +1,17 @@
 {
-  "name": "grunt-template-client",
+  "name": "grunt-batman-template",
   "description": "compiles any and all templates into ready to use includes",
   "version": "0.2.1",
-  "homepage": "https://github.com/alanshaw/grunt-template-client",
+  "homepage": "https://github.com/temsa/grunt-batman-template",
   "author": {
-    "name": "Markus Ullmark",
-    "email": "ullmark@gmail.com"
+    "name": "Florian Traverse",
+    "email": "florian.traverse@gmail.com"
   },
   "contributors": [
+    {
+      "name": "Markus Ullmark",
+      "email": "ullmark@gmail.com"
+    },
     {
       "name": "Alan Shaw",
       "email": "alan138@gmail.com"
@@ -15,19 +19,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com:alanshaw/grunt-template-client.git"
+    "url": "git@github.com:temsa/grunt-batman-template.git"
   },
   "bugs": {
-    "url": "https://github.com/alanshaw/grunt-template-client/issues"
+    "url": "https://github.com/temsa/grunt-batman-template/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/alanshaw/grunt-template-client/blob/master/LICENSE-MIT"
+      "url": "https://github.com/temsa/grunt-batman-template/blob/master/LICENSE-MIT"
     }
   ],
   "main": "grunt.js",
-  "bin": "bin/grunt-template-client",
+  "bin": "bin/grunt-batman-template",
   "engines": {
     "node": "*"
   },
@@ -41,8 +45,9 @@
   },
   "keywords": [
     "gruntplugin",
-    "hogan",
+    "batman",
     "template",
-    "templates"
+    "templates",
+    "bundle"
   ]
 }
