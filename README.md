@@ -19,7 +19,7 @@ grunt.loadNpmTasks('grunt-batman-template');
 given the following config and template
 ### config
 ```javascript
-  templateclient: {
+  batman: {
     dist: {
 		src: ['templates/**/*.html'],
 		dest: 'dist/tmpl.js' 
