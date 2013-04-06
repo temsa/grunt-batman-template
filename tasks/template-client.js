@@ -2,7 +2,7 @@
  * grunt-batman-template
  * forked from https://github.com/markus.ullmark/grunt-hogan-client
  *
- * Copyright (c) 2012 Florian Traverse
+ * Copyright (c) 2012-2013 Florian Traverse
  * Licensed under the MIT license.
  */
 
@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
 	grunt.util = grunt.util || grunt.utils;
 	
-	var _ = grunt.utils._;
+	var _ = grunt.util._;
 
 	var path = require('path'),
 		fs = require('fs'),
@@ -25,32 +25,14 @@ module.exports = function(grunt) {
 	// TASKS
 	// ==========================================================================
 
-	grunt.registerMultiTask('batman', 'combines batmans templates into a script to include in your page', function() {
-		// grap the filepattern
-		var files = grunt.file.expandFiles(this.file.src);
-//console.log('batman templates:\n', files.join('\n'))
-		// create the hogan include
-		var src = grunt.helper('batman', files, this.data.options);
-		// write the new file
-		grunt.file.write(this.file.dest, src);
-		// log our success
-		grunt.log.writeln('File "' + this.file.dest + '" created.');
-	});
+	var templateClient = function(files, options, grunt) {
 
-	// ==========================================================================
-	// HELPERS
-	// ==========================================================================
+		"use strict";
 
-	grunt.registerHelper('batman', function(files, options) {
+		var cleaner = /^\s+|\s+$|[\r\n]+/gm;
 		var js = '';
 
-		options = _.defaults(options || {}, {
-			key: function(filepath) {
-				return path.basename(filepath, path.extname(filepath));
-			}
-		});
-
-		js += '(function bundleBatmanTemplates() {' + grunt.utils.linefeed;
+		js += '(function bundleBatmanTemplates() {' + grunt.util.linefeed;
 		
 		files.map(function(filepath) {
 //console.log('filepath:', filepath)
@@ -58,12 +40,31 @@ module.exports = function(grunt) {
 			var key = options.key(filepath);
 			var contents = grunt.file.read(filepath).replace(cleaner, '').replace(/'/g, "\\'");
 //console.log('contents:', contents)
-			js += '  Batman.View.store.set("' + key + '", \'' + contents + '\' );' + grunt.utils.linefeed;
+			js += '  Batman.View.store.set("' + key + '", \'' + contents + '\' );' + grunt.util.linefeed;
 		});
 
-		js += '}());' + grunt.utils.linefeed;
+		js += '}());' + grunt.util.linefeed;
 
 		return js;
+	};
+
+	grunt.registerMultiTask('batman', 'combines batmans templates into a script to include in your page', function() {
+		var options = this.options({
+			key: function(filepath) {
+				return path.basename(filepath, path.extname(filepath));
+			}
+		});
+		this.files.forEach(function(f) {
+			// create the hogan include
+			var src = templateClient(f.src, options, grunt);
+
+			// write the new file
+			grunt.file.write(f.dest, src);
+
+			// log our success
+			grunt.log.writeln('File "' + f.dest + '" created.');
+		});
 	});
 
 };
+
